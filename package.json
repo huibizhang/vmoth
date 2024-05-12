@@ -1,0 +1,18 @@
+{
+  "name": "vmoth",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "test": "node ./test/index.mjs"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "axios-mock-adapter": "^1.22.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  },
+  "license": "MIT"
+}
