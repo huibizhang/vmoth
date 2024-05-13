@@ -1,4 +1,4 @@
-import { AxiosRequestConfig, AxiosStatic } from "axios";
+import { AxiosStatic } from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {
   Handler,
