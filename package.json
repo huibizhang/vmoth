@@ -15,5 +15,16 @@
   "devDependencies": {
     "typescript": "^5.4.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/huibizhang/vmoth.git"
+  },
+  "homepage": "https://github.com/huibizhang/vmoth",
+  "keywords": [
+    "vmoth",
+    "mock",
+    "axios"
+  ],
+  "author": "huibizhang",
   "license": "MIT"
 }
