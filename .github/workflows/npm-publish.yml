@@ -25,11 +25,14 @@ jobs:
         run: |
           yarn
           yarn build
-      - name: npm publish
-        run: |
-          npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      # - name: npm publish
+      #   run: |
+      #     npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - uses: JS-DevTools/npm-publish@v3
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
       - name: auto taging
         uses: Klemensas/action-autotag@stable
         with:
