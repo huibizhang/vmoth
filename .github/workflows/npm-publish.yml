@@ -23,6 +23,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - name: build
         run: |
+          yarn
           yarn build
       - name: npm publish
         run: |
