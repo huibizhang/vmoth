@@ -1,11 +1,14 @@
-import { vMoth } from "../dist/index.js";
 import axios from "axios";
+import { vMoth, pattern } from "../dist/index.js";
+import call from "./call.mjs";
 
-vMoth("/users").reply(200, {
-  users: [{ id: 1, name: "John Smith" }],
-});
+const mock = vMoth(axios);
 
-const res = await axios.get("/users");
-console.log("test", res.data);
+mock.on(
+  "/users",
+  pattern.json(() => {})
+);
+
+call();
 
 export default () => {};
