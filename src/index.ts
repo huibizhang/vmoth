@@ -1,13 +1,27 @@
-import { AxiosStatic } from "axios";
+import { AxiosRequestConfig, AxiosStatic } from "axios";
 import MockAdapter from "axios-mock-adapter";
 import {
   Handler,
+  Request,
   HandlerResponse,
   onRequest,
   VMothInstance,
   VMoth,
   VMothPattern,
 } from "./types";
+
+const getParams = (config: AxiosRequestConfig) => {
+  let host = config.url?.startsWith("/") ? "http://localhost" : "";
+
+  const url = new URL(`${host}${config.url ?? "/"}`);
+  const entries = url.searchParams.entries();
+  const params: { [key: string]: string } = {};
+
+  for (const [k, v] of entries) {
+    params[k] = v;
+  }
+  return params;
+};
 
 /**
  *
@@ -35,7 +49,16 @@ export function vMoth(axios: AxiosStatic): VMothInstance {
     }
     if (handler && handler instanceof Function) {
       mock.onAny(url).reply((config) => {
-        const result: HandlerResponse = handler(config);
+        const req: Request = {
+          method: config.method,
+          params: getParams(config),
+          data: config.data,
+        };
+        try {
+          req.data = JSON.parse(config.data);
+        } catch (e) {}
+
+        const result: HandlerResponse = handler(req, config);
         return [result?.status ?? 200, result?.data ?? {}];
       });
       return;
