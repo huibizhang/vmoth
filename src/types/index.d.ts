@@ -5,14 +5,23 @@ export type HandlerResponse = {
   data?: any;
 };
 
+export type Request = {
+  method?: string;
+  params?: any;
+  data?: any;
+};
+
 /**
  * 資料處理函式
- *
- * @param {AxiosRequestConfig} config AxiosRequestConfig
+ * @param {Request} req Request 請求物件
+ * @param {AxiosRequestConfig} config 原始 Request 請求
  *
  * @returns {HandlerResponse} HandlerResponse
  */
-export type Handler = (config?: AxiosRequestConfig) => HandlerResponse;
+export type Handler = (
+  req: Request,
+  config?: AxiosRequestConfig
+) => HandlerResponse;
 
 export interface VMothPattern {
   [key: string]: Handler | HandlerResponse | undefined;

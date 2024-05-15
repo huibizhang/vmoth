@@ -4,10 +4,11 @@ import call from "./call.mjs";
 
 const mock = vMoth(axios);
 
-mock.on(
-  "/users",
-  pattern.json(() => {})
-);
+mock.on(/\/users\/*/, (req) => {
+  return {
+    data: req,
+  };
+});
 
 call();
 
