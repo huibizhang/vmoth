@@ -51,6 +51,7 @@ export declare function onRequest(
 
 export interface VMothInstance {
   on: typeof onRequest;
+  off: () => void;
 }
 
 export type VMoth = (axios: AxiosStatic) => VMothInstance;
@@ -115,6 +116,9 @@ export function vMoth(axios: AxiosStatic): VMothInstance {
 
   return {
     on: onRequest,
+    off()  {
+      mock.restore();
+    }
   };
 }
 
